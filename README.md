@@ -4,11 +4,15 @@ Aplicação de estudos de Matemática, Física e Química para preparação para
 
 ## Estado atual
 
-Preparação da hospedagem em 19/10/2026. Os seis arquivos da aplicação estão presentes e revisados. Repositório público: https://github.com/LcBarros/exatas-etec-helo. Endereço previsto do site: https://lcbarros.github.io/exatas-etec-helo/. A disponibilidade do endereço depende da conclusão do deploy no GitHub Pages.
+Publicação concluída em 19/10/2026 no GitHub Pages, pela branch `main`, pasta `/(root)`, com HTTPS obrigatório. Site: https://lcbarros.github.io/exatas-etec-helo/. Repositório público: https://github.com/LcBarros/exatas-etec-helo.
 
 Foram corrigidos o escopo explícito do manifest, os metadados de instalação no iPhone e o registro/cache do Service Worker. O design e o conteúdo educacional foram preservados. Ícones PNG conferidos: 192 × 192, 512 × 512 e Apple 180 × 180. CSS, JavaScript e conteúdo estão embutidos no HTML, sem dependências externas. Os caminhos relativos atendem à publicação em subdiretório.
 
-Verificações locais aprovadas com Node e DOM/armazenamento simulados: sintaxe JavaScript, 1.200 exercícios gerados com resposta válida, pontuação de acertos e erros, gravação do progresso no armazenamento simulado, revisão de erros, resultado do bloco, renderização dos assuntos de revisão, campos do manifest e sintaxe do worker. Isso não substitui testes em navegador real. O navegador disponível não conseguiu acessar o servidor HTTP local; viewport, persistência real, instalação do worker e offline ainda precisam de validação após publicar.
+Verificações locais aprovadas com Node e DOM/armazenamento simulados: sintaxe JavaScript, 1.200 exercícios gerados com resposta válida, pontuação de acertos e erros, gravação do progresso, revisão de erros, resultado do bloco, assuntos de revisão e campos do manifest. A simulação do worker aprovou instalação dos seis recursos, fallback offline para navegação com e sem parâmetros e remoção isolada dos caches antigos, na raiz e em subdiretório.
+
+Testes no site publicado aprovados: página inicial, CSS, JavaScript, respostas certas e erradas com explicação, revisão de erros, resultado de bloco, progresso preservado após recarga e revisão de Matemática, Física e Química. Viewport testado: 390 × 844. Console sem erros capturados durante esses fluxos. Os seis arquivos públicos retornaram HTTP 200 por HTTPS, com tipos de conteúdo corretos e conteúdo idêntico aos arquivos locais revisados. O título e o nome Apple foram conferidos no HTML publicado.
+
+Limite da validação: a ferramenta de navegador disponível não expõe inspeção de Service Workers nem simulação de rede offline. O registro real do worker, a abertura em modo avião e a instalação em um iPhone físico não foram confirmados. O teste simulado de cache não substitui essas verificações.
 
 ## Estrutura esperada
 
@@ -64,7 +68,7 @@ Em **Settings → Pages → Build and deployment**, escolher **Deploy from a bra
 
 Editar os arquivos, incrementar a versão do cache em `sw.js` quando necessário, e enviar um commit para a branch publicada. Também é possível editar ou enviar arquivos pelo próprio GitHub. Aguardar o deploy concluir e abrir o app com internet. Fechar todas as janelas do app e reabrir caso haja um Service Worker aguardando ativação.
 
-## Requisitos PWA a validar
+## Configuração PWA
 
 - Título HTML: `Exatas ETEC — Helo`.
 - Manifest: `name` igual ao título, `short_name` igual a `Exatas Helo`, `start_url` e `scope` relativos, como `./`, e `display: standalone`.
@@ -89,8 +93,8 @@ Primeiro tentar fechar todas as janelas e reabrir com internet, sem apagar dados
 
 Alterar o conteúdo de `sw.js` e incrementar a versão do cache usada pela implementação. O evento `install` deve preparar o novo cache; `activate` deve remover apenas versões antigas deste app. Publicar pelo Git e reabrir com internet. O navegador verifica a atualização; o novo worker pode aguardar o fechamento das janelas antigas. Não forçar recarga durante uma resposta de exercício sem tratar a preservação do estado.
 
-## Testes pendentes
+## Verificação final no iPhone
 
-Após autenticar e publicar: testar raiz e subdiretório em navegador; página inicial, CSS, JavaScript, exercícios, correção, progresso após recarga e revisão; viewport 390 × 844; HTTPS, manifest e registro do worker publicados; reabrir offline depois da ativação do cache. Um viewport de iPhone não substitui teste real no Safari/iPhone.
+Abrir o site com internet no Safari, instalar na Tela de Início, abrir pelo ícone e aguardar o carregamento. Fechar o app, ativar modo avião e reabrir pelo ícone; conferir revisão, exercícios e progresso. Um viewport de iPhone não substitui teste real no Safari/iPhone. Se o app não abrir offline, desativar o modo avião, abrir novamente com internet e conferir o registro do worker pelo Web Inspector do Safari.
 
 O progresso é local ao navegador e dispositivo, sem sincronização ou backup remoto. Apagar os dados do site pode apagá-lo. O sistema pode remover dados locais; offline depende da preservação do cache. Usar sempre o mesmo endereço publicado.
