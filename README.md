@@ -16,6 +16,10 @@ Limite da validação: a ferramenta de navegador disponível não expõe inspeç
 
 ## Estrutura esperada
 
+### Visual e acessibilidade
+
+Interface responsiva com cores por matéria, atalhos de revisão e treino, ícones SVG embutidos e navegação inferior. O layout adapta cartões e controles a celulares, tablets e computadores. Fontes do sistema e recursos embutidos mantêm a interface independente de CDNs. Há foco visível de teclado e respeito à preferência de movimento reduzido. A atualização visual usa o cache `v4` e mantém a chave de progresso existente.
+
 ```text
 /
 ├── index.html
