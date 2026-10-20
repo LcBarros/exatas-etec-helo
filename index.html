@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#17385e">
+<meta name="apple-mobile-web-app-title" content="Exatas Helo">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Exatas ETEC — Helo</title>
+<style>
+:root{--navy:#17385e;--blue:#2f6fb0;--sky:#eaf3fb;--bg:#f5f7fa;--card:#fff;--text:#17212b;--muted:#617181;--border:#d9e1e8;--green:#247557;--greenbg:#eaf7f0;--orange:#a85f19;--orangebg:#fff3e5;--red:#a83d42;--redbg:#fceced}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.5}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:calc(16px + env(safe-area-inset-top)) 16px 18px}
+header .inner{max-width:760px;margin:auto} header h1{font-size:1.45rem;margin:0 0 4px} header p{margin:0;opacity:.92;font-size:.92rem}
+.wrap{max-width:760px;margin:auto;padding:12px 12px 90px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 2px 12px #0011}
+.hero{background:linear-gradient(180deg,#fff,#f7fbff)}
+h2{font-size:1.25rem;margin:.1rem 0 .7rem;color:var(--navy)} h3{font-size:1.05rem;margin:.1rem 0 .4rem} p{margin:.45rem 0}
+.muted{color:var(--muted);font-size:.9rem}.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 9px;border-radius:999px;background:var(--sky);color:var(--navy);font-size:.78rem;font-weight:800;margin:0 5px 5px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button,select{font:inherit}button{border:0;border-radius:13px;padding:13px 14px;background:var(--blue);color:#fff;font-weight:800;min-height:48px;cursor:pointer}button.secondary{background:#e8eff7;color:var(--navy)}button.ghost{background:#fff;color:var(--navy);border:1px solid var(--border)}button:disabled{opacity:.5}
+select{width:100%;padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;color:var(--text);min-height:46px} label{display:block;font-weight:800;margin:8px 0 5px}
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fff;border-top:1px solid var(--border);padding:7px 8px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.tabbtn{background:#fff;color:var(--muted);padding:8px 4px;min-height:52px;border-radius:12px;font-size:.76rem;font-weight:800}.tabbtn.active{background:var(--sky);color:var(--navy)}.tabbtn span{display:block;font-size:1.25rem;line-height:1.1;margin-bottom:3px}
+.page{display:none}.page.active{display:block}.subjectBtns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.subjectBtns button{background:#eef3f8;color:var(--navy);padding:10px 6px}.subjectBtns button.active{background:var(--navy);color:#fff}
+.review-card{border:1px solid var(--border);border-radius:16px;margin:10px 0;overflow:hidden;background:#fff}.review-card summary{list-style:none;cursor:pointer;padding:14px;font-weight:900;color:var(--navy);display:flex;align-items:center;justify-content:space-between;gap:10px}.review-card summary::-webkit-details-marker{display:none}.review-card summary:after{content:"+";font-size:1.35rem}.review-card[open] summary:after{content:"–"}.review-body{padding:0 14px 14px}
+.rule{background:#f7fafc;border-left:4px solid var(--blue);padding:10px 11px;border-radius:9px;margin:8px 0}.formula{background:var(--navy);color:#fff;border-radius:13px;padding:12px 10px;text-align:center;font-size:1.22rem;font-weight:900;margin:9px 0}.example{background:var(--greenbg);border:1px solid #cce7d9;border-radius:12px;padding:10px 11px;margin:8px 0}.warning{background:var(--orangebg);border:1px solid #efd7ba;border-radius:12px;padding:10px 11px;margin:8px 0}.steps{margin:7px 0;padding-left:21px}.steps li{margin:4px 0}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.mini>div{background:#f7f9fb;border:1px solid var(--border);border-radius:11px;padding:9px}.mini b{display:block;color:var(--navy);font-size:.82rem;margin-bottom:3px}
+.quickmap{display:grid;grid-template-columns:1fr 1fr;gap:8px}.quickmap div{border:1px solid var(--border);border-radius:12px;padding:10px;background:#fbfcfd}.quickmap b{display:block;color:var(--navy)}
+.option{display:block;width:100%;text-align:left;margin:7px 0;background:#fff;color:var(--text);border:2px solid var(--border);font-weight:700}.option.correct{background:var(--greenbg);border-color:var(--green);color:#17583d}.option.wrong{background:var(--redbg);border-color:var(--red);color:#7d2429}.explain{background:#f3f7fb;border:1px solid var(--border);padding:12px;border-radius:12px;margin-top:12px}.hidden{display:none!important}
+.progress{height:10px;background:#e3e9ef;border-radius:99px;overflow:hidden}.progress>div{height:100%;background:var(--green);width:0%}.topline{display:flex;justify-content:space-between;gap:10px;align-items:center}.qtext{font-size:1.08rem;font-weight:900;margin:12px 0}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.stat{background:#f7f9fb;border:1px solid var(--border);padding:12px;border-radius:13px;text-align:center}.stat b{display:block;font-size:1.3rem;color:var(--navy)}.tip{background:var(--greenbg);border-left:4px solid var(--green);padding:10px;border-radius:9px}
+@media(max-width:560px){.wrap{padding:10px 10px 90px}.card{padding:14px;border-radius:15px}.grid2,.quickmap{grid-template-columns:1fr}.topline{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="inner"><h1>Exatas ETEC — Helo</h1><p>Revisão simples + treino de Matemática, Física e Química</p></div></header>
+<main class="wrap">
+<section id="home" class="page active">
+<div class="card hero"><span class="pill">📘 Revisão</span><span class="pill">🧠 Exercícios</span><span class="pill">📱 Celular</span><h2>Como estudar aqui</h2>
+<ol class="steps"><li>Abra <b>Revisão</b> e leia uma regra de cada vez.</li><li>Veja o <b>exemplo resolvido</b>.</li><li>Vá para <b>Treino</b> e faça 5 ou 10 questões.</li><li>Errou? Leia a correção e refaça depois.</li></ol>
+<div class="tip"><b>Regra principal:</b> entender o caminho da conta vale mais que decorar a resposta.</div></div>
+<div class="card"><h2>Mapa rápido</h2><div class="quickmap">
+<div><b>Matemática</b>Operações → frações → porcentagem → proporção → equação → geometria.</div>
+<div><b>Física</b>Unidades → movimento → densidade → pressão → calor → energia → eletricidade.</div>
+<div><b>Química</b>Matéria → átomo → substâncias → misturas → soluções → pH → reações.</div>
+<div><b>Estratégia ETEC</b>Leia → marque dados → escolha a regra → calcule → confira unidade.</div>
+</div></div>
+<div class="card"><h2>Progresso</h2><div class="stats"><div class="stat"><b id="homeAttempts">0</b>tentativas</div><div class="stat"><b id="homeCorrect">0</b>acertos</div><div class="stat"><b id="homeRate">0%</b>aproveitamento</div><div class="stat"><b id="homeErrors">0</b>erros salvos</div></div></div>
+</section>
+
+<section id="review" class="page">
+<div class="card"><h2>Revisão visual</h2><p class="muted">Cada bloco mostra: regra, fórmula, quando usar, exemplo e pegadinha.</p>
+<div class="subjectBtns"><button class="active" onclick="setReviewSubject('Matemática',this)">Matemática</button><button onclick="setReviewSubject('Física',this)">Física</button><button onclick="setReviewSubject('Química',this)">Química</button></div></div>
+<div id="reviewList"></div>
+</section>
+
+<section id="practice" class="page">
+<div id="setup" class="card"><h2>Treino</h2><label>Matéria</label><select id="topic"><option value="todos">Misturado</option><option>Matemática</option><option>Física</option><option>Química</option></select><label>Quantidade</label><select id="count"><option>5</option><option selected>10</option><option>20</option></select><div class="grid2" style="margin-top:12px"><button onclick="startQuiz()">Começar</button><button class="secondary" onclick="startQuiz('errors')">Revisar erros</button></div></div>
+<div id="quiz" class="card hidden"><div class="topline"><div><span class="pill" id="qtopic"></span><div id="qnum" class="muted"></div></div><div style="min-width:150px;flex:1"><div class="progress"><div id="bar"></div></div></div></div><div id="qtext" class="qtext"></div><div id="options"></div><div id="explain" class="explain hidden"></div><button id="next" class="hidden" onclick="nextQ()" style="margin-top:12px">Próxima</button></div>
+<div id="result" class="card hidden"><h2>Bloco concluído</h2><p id="resultText"></p><div class="grid2"><button onclick="backSetup()">Novo bloco</button><button class="secondary" onclick="startQuiz('errors')">Revisar erros</button></div></div>
+</section>
+
+<section id="progressPage" class="page">
+<div class="card"><h2>Meu progresso</h2><div class="stats"><div class="stat"><b id="stAttempts">0</b>tentativas</div><div class="stat"><b id="stCorrect">0</b>acertos</div><div class="stat"><b id="stRate">0%</b>aproveitamento</div><div class="stat"><b id="stErrors">0</b>erros salvos</div></div></div>
+<div class="card"><h2>Como interpretar</h2><div class="example"><b>80% ou mais:</b> assunto bem encaminhado.</div><div class="warning"><b>60% a 79%:</b> revise as regras e faça outro bloco.</div><div class="rule"><b>Abaixo de 60%:</b> volte à revisão e refaça exemplos.</div><button class="ghost" onclick="resetStats()" style="margin-top:10px">Zerar progresso</button></div>
+</section>
+</main>
+
+<nav class="tabs"><button class="tabbtn active" onclick="showPage('home',this)"><span>🏠</span>Início</button><button class="tabbtn" onclick="showPage('review',this)"><span>📘</span>Revisão</button><button class="tabbtn" onclick="showPage('practice',this)"><span>✏️</span>Treino</button><button class="tabbtn" onclick="showPage('progressPage',this)"><span>📊</span>Progresso</button></nav>
+
+<script>
+const REVIEWS={
+"Matemática":[
+["Ordem das operações","Base","Quando aparecem várias contas juntas, existe uma ordem para resolver.","( ) → potências/raízes → × e ÷ → + e −","Expressões com mais de uma operação.","6 + 2 × 5 = 6 + 10 = 16.","Não resolva tudo apenas da esquerda para a direita."],
+["Frações","Muito importante","Fração mostra quantas partes foram escolhidas de um total de partes iguais.","parte = quantidade × numerador ÷ denominador","Partes de grupos, receitas, medidas e proporções.","3/4 de 20 = 20 × 3 ÷ 4 = 15.","Embaixo = total de partes; em cima = partes usadas."],
+["Porcentagem","Frequente","Porcentagem quer dizer 'de cada 100'.","p% de valor = valor × p ÷ 100","Descontos, aumentos, pesquisas e gráficos.","25% de 80 = 80 × 25 ÷ 100 = 20.","10% = dividir por 10; 50% = metade; 25% = quarta parte."],
+["Aumento e desconto","Frequente","Calcule a porcentagem e depois some ou subtraia.","final = inicial ± variação","Preço final, reajuste, desconto e acréscimo.","R$ 200 com 15% de desconto: 30 de desconto; final = R$ 170.","Não confunda valor do desconto com preço final."],
+["Regra de três direta","Proporção","Se as duas grandezas crescem juntas, a relação é direta.","a / b = c / x","Preço por quantidade, receita, consumo e escalas simples.","3 cadernos = R$24; 1 = R$8; 5 = R$40.","Achar primeiro o valor de 1 costuma ser mais simples."],
+["Equação do 1º grau","Álgebra","O objetivo é deixar o x sozinho usando operações inversas.","ax + b = c → x = (c − b) ÷ a","Valor desconhecido representado por letra.","3x + 6 = 21 → 3x = 15 → x = 5.","Somando passa subtraindo; multiplicando passa dividindo."],
+["Perímetro e área","Geometria","Perímetro é o contorno; área é a superfície.","Retângulo: P = 2(c+l) | A = c×l","Terrenos, pisos, cercas, figuras.","6 m × 4 m → A=24 m²; P=20 m.","Área usa m²; perímetro usa m."],
+["Volume","Geometria","Volume mede o espaço ocupado por um corpo.","V = comprimento × largura × altura","Caixas, reservatórios e sólidos.","4×3×2 = 24 m³.","Volume usa unidade ao cubo: cm³, m³."],
+["Média aritmética","Dados","Some os valores e divida pela quantidade de valores.","média = soma ÷ quantidade","Notas, temperaturas e tabelas.","6, 8 e 10 → 24 ÷ 3 = 8.","Divida pela quantidade de números."]
+],
+"Física":[
+["Unidades e conversões","Antes de calcular","Antes da fórmula, deixe as unidades compatíveis.","1 km=1000 m | 1 h=60 min | 1 min=60 s","Quando o enunciado mistura unidades.","2,5 km = 2500 m; 3 min = 180 s.","Muitos erros de Física são erros de unidade."],
+["Velocidade média","Movimento","Compara distância percorrida com tempo gasto.","v = d ÷ t","Questões com distância e tempo.","120 km em 2 h → 60 km/h.","km e h geram km/h."],
+["Densidade","Matéria","Diz quanta massa existe em certo volume.","d = m ÷ V","Materiais, líquidos e flutuação.","200 g em 50 cm³ → 4 g/cm³.","Maior densidade = mais massa no mesmo volume."],
+["Pressão","Força","Aumenta com a força e diminui com a área.","p = F ÷ A","Pregos, facas, pneus, salto e superfícies.","100 N em 0,5 m² → 200 Pa.","Mesma força em área menor → pressão maior."],
+["Peso","Gravidade","É a força que a gravidade exerce sobre a massa.","P = m × g","Massa, gravidade e peso.","5 kg, g≈10 → P=50 N.","Massa em kg; peso em newtons (N)."],
+["Calor e temperatura","Térmica","Calor é energia em trânsito do mais quente para o mais frio.","quente → frio","Aquecimento, resfriamento e equilíbrio térmico.","Colher fria na sopa quente recebe energia.","Calor e temperatura não são a mesma coisa."],
+["Transferência de calor","Térmica","Condução = contato; convecção = movimento do fluido; radiação = ondas.","contato | fluido | ondas","Identificar como o calor passa.","Sol→Terra: radiação; água na panela: convecção.","Radiação pode acontecer no vácuo."],
+["Energia e potência","Energia","Potência indica quão rápido a energia é usada.","P = energia ÷ tempo","Aparelhos e máquinas.","600 J em 3 s → 200 W.","Watt (W) é unidade de potência."],
+["Lei de Ohm","Eletricidade","Relaciona tensão, resistência e corrente.","U = R × i","Circuitos com V, A e Ω.","R=10 Ω, i=2 A → U=20 V.","R=U÷i; i=U÷R."]
+],
+"Química":[
+["Estados físicos","Matéria","A matéria pode estar nos estados sólido, líquido e gasoso.","sólido ⇄ líquido ⇄ gasoso","Mudanças de estado e cotidiano.","Gelo=sólido; água=líquido; vapor=gasoso.","Mudança física não cria outra substância."],
+["Mudanças de estado","Matéria","Cada mudança de estado tem um nome.","fusão S→L | vaporização L→G | condensação G→L | solidificação L→S","Derreter, evaporar, condensar e congelar.","Gelo derretendo = fusão.","Fusão não é vaporização."],
+["Estrutura do átomo","Átomo","Prótons e nêutrons ficam no núcleo; elétrons ao redor.","Z=prótons | A=prótons+nêutrons","Número atômico Z e massa A.","Z=11, A=23 → nêutrons=12.","Átomo neutro: elétrons = prótons."],
+["Elemento, substância e fórmula","Conceitos","Símbolos representam elementos; fórmulas mostram a composição.","O₂ = 1 elemento | H₂O = 2 elementos","Classificar fórmulas.","O₂ é simples; H₂O é composta.","Conte tipos de elementos, não total de átomos."],
+["Substância simples e composta","Conceitos","Simples tem um elemento; composta tem dois ou mais.","simples: O₂ | composta: H₂O, CO₂","Classificação de substâncias.","CO₂ tem C e O → composta.","O₂ tem dois átomos, mas um único elemento."],
+["Misturas","Misturas","Homogênea tem uma fase; heterogênea tem duas ou mais.","1 fase = homogênea | 2+ = heterogênea","Água+sal, água+óleo, granito.","Água+óleo = heterogênea.","Observe fases visíveis."],
+["Separação de misturas","Misturas","O método depende das propriedades dos componentes.","filtração: sólido+líquido | decantação: densidades | destilação: ebulição","Escolher método de separação.","Areia+água → filtração; água+óleo → decantação.","Primeiro identifique a mistura."],
+["Concentração simples","Soluções","Compara quantidade de soluto com volume da solução.","C = massa ÷ volume","Massa dissolvida e volume.","20 g em 2 L → 10 g/L.","Confira a unidade pedida."],
+["pH","Soluções","Indica se a solução é ácida, neutra ou básica.","pH<7 ácido | pH=7 neutro | pH>7 básico","Escala de pH.","pH 3 ácido; pH 11 básico.","Quanto menor o pH, mais ácida."],
+["Conservação da massa","Reações","Em sistema fechado, massa dos reagentes = massa dos produtos.","m(reagentes) = m(produtos)","Reações e balanço de massas.","10 g + 15 g → 25 g.","A matéria se reorganiza; não desaparece."]
+]};
+
+let reviewSubject="Matemática";
+function showPage(id,btn){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tabbtn').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function setReviewSubject(s,btn){reviewSubject=s;document.querySelectorAll('.subjectBtns button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');renderReview()}
+function renderReview(){const list=document.getElementById('reviewList');list.innerHTML='';REVIEWS[reviewSubject].forEach((r,i)=>{const d=document.createElement('details');d.className='review-card';if(i===0)d.open=true;d.innerHTML=`<summary><span>${r[0]}</span><span class="pill">${r[1]}</span></summary><div class="review-body"><div class="rule"><b>Regra simples</b><br>${r[2]}</div><div class="formula">${r[3]}</div><div class="mini"><div><b>Quando usar</b>${r[4]}</div><div><b>Exemplo resolvido</b>${r[5]}</div></div><div class="warning"><b>⚠️ Atenção</b><br>${r[6]}</div></div>`;list.appendChild(d)})}
+renderReview();
+
+const SKEY='etec_helo_pwa_v2';
+function loadStats(){try{return JSON.parse(localStorage.getItem(SKEY)||'{"attempts":0,"correct":0,"errors":[]}')}catch(e){return {attempts:0,correct:0,errors:[]}}}
+function saveStats(s){localStorage.setItem(SKEY,JSON.stringify(s));renderStats()}
+function renderStats(){const s=loadStats(),r=s.attempts?Math.round(100*s.correct/s.attempts):0;['homeAttempts','stAttempts'].forEach(id=>document.getElementById(id).textContent=s.attempts);['homeCorrect','stCorrect'].forEach(id=>document.getElementById(id).textContent=s.correct);['homeRate','stRate'].forEach(id=>document.getElementById(id).textContent=r+'%');['homeErrors','stErrors'].forEach(id=>document.getElementById(id).textContent=s.errors.length)}
+renderStats();
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}function pick(a){return a[rand(0,a.length-1)]}function shuffle(a){for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function build(subject,topic,text,correct,distr,explain){let opts=[String(correct),...distr.map(String)].filter((v,i,a)=>a.indexOf(v)===i);while(opts.length<4)opts.push(String(Number(correct)+rand(1,9)));opts=shuffle(opts.slice(0,5));return{subject,topic:subject+' • '+topic,text,options:opts,answer:opts.indexOf(String(correct)),explain}}
+const GEN=[
+{subject:'Matemática',make:()=>{let p=pick([10,20,25,30,40,50]),v=pick([80,100,120,160,200,240,300]),c=v*p/100;return build('Matemática','Porcentagem',`Quanto é ${p}% de ${v}?`,c,[v-c,c+p,p,v/2],`${v} × ${p} ÷ 100 = <b>${c}</b>.`)}},
+{subject:'Matemática',make:()=>{let a=rand(4,14),b=rand(3,10),c=a*b;return build('Matemática','Área',`Retângulo ${a} m × ${b} m. Qual a área?`,`${c} m²`,[`${2*(a+b)} m²`,`${a+b} m²`,`${c+a} m²`],`A=${a}×${b}=<b>${c} m²</b>.`)}},
+{subject:'Matemática',make:()=>{let x=rand(2,12),a=rand(2,6),b=rand(1,9),r=a*x+b;return build('Matemática','Equação',`Resolva ${a}x + ${b} = ${r}.`,x,[x+1,x-1,a*x],`${a}x=${r-b}; x=${r-b}÷${a}=<b>${x}</b>.`)}},
+{subject:'Matemática',make:()=>{let n=pick([3,4,5]),u=pick([6,8,10,12]),t=pick([6,7,8]);return build('Matemática','Proporção',`${n} unidades custam R$ ${n*u}. Quanto custam ${t}?`,`R$ ${t*u}`,[`R$ ${n*u+t}`,`R$ ${(t-1)*u}`,`R$ ${u}`],`1 unidade = ${n*u}÷${n}=R$${u}; ${t} unidades=<b>R$${t*u}</b>.`)}},
+{subject:'Física',make:()=>{let t=pick([2,3,4]),v=pick([40,50,60,70]),d=t*v;return build('Física','Velocidade',`${d} km em ${t} h. Velocidade média?`,`${v} km/h`,[`${v+10} km/h`,`${v*t} km/h`,`${v-10} km/h`],`v=d÷t=${d}÷${t}=<b>${v} km/h</b>.`)}},
+{subject:'Física',make:()=>{let V=pick([20,25,40,50]),d=pick([2,3,4,5]),m=V*d;return build('Física','Densidade',`${m} g ocupam ${V} cm³. Densidade?`,`${d} g/cm³`,[`${d+1} g/cm³`,`${m} g/cm³`,`${V} g/cm³`],`d=m÷V=${m}÷${V}=<b>${d} g/cm³</b>.`)}},
+{subject:'Física',make:()=>{let R=pick([2,4,5,10]),i=pick([1,2,3]),U=R*i;return build('Física','Lei de Ohm',`U=${U} V e i=${i} A. R?`,`${R} Ω`,[`${U+i} Ω`,`${U*i} Ω`,`${R*2} Ω`],`R=U÷i=${U}÷${i}=<b>${R} Ω</b>.`)}},
+{subject:'Física',make:()=>build('Física','Calor','Qual transferência de calor pode ocorrer no vácuo?','Radiação',['Condução','Convecção','Fusão'],'<b>Radiação</b>: não precisa de meio material.')},
+{subject:'Química',make:()=>{let Z=rand(8,20),n=rand(8,24),A=Z+n;return build('Química','Átomo',`Z=${Z}, A=${A}. Quantos nêutrons?`,n,[Z,A,n+1],`n=A−Z=${A}−${Z}=<b>${n}</b>.`)}},
+{subject:'Química',make:()=>{let p=rand(1,13),c=p<7?'Ácida':p===7?'Neutra':'Básica';return build('Química','pH',`pH ${p}: como classificar?`,c,['Ácida','Neutra','Básica'].filter(x=>x!==c),`pH ${p} → <b>${c}</b>.`)}},
+{subject:'Química',make:()=>build('Química','Substâncias','Qual é substância simples?','O₂',['H₂O','CO₂','NaCl'],'<b>O₂</b>: apenas um tipo de elemento químico.')},
+{subject:'Química',make:()=>build('Química','Misturas','Água e óleo formam uma mistura:','Heterogênea',['Homogênea','Substância simples','Elemento químico'],'Duas fases → <b>heterogênea</b>.')}
+];
+let session=[],qi=0,score=0,answered=false;
+function startQuiz(mode='normal'){const subject=document.getElementById('topic').value,n=Number(document.getElementById('count').value);session=[];qi=0;score=0;answered=false;if(mode==='errors'){const st=loadStats();if(!st.errors.length){alert('Ainda não há erros salvos. Faça um bloco primeiro.');return}session=shuffle([...st.errors]).slice(0,n)}else{const pool=subject==='todos'?GEN:GEN.filter(g=>g.subject===subject);for(let i=0;i<n;i++)session.push(pick(pool).make())}document.getElementById('setup').classList.add('hidden');document.getElementById('quiz').classList.remove('hidden');document.getElementById('result').classList.add('hidden');showQ()}
+function showQ(){answered=false;const q=session[qi];document.getElementById('qnum').textContent=`Questão ${qi+1} de ${session.length}`;document.getElementById('qtopic').textContent=q.topic;document.getElementById('qtext').innerHTML=q.text;document.getElementById('bar').style.width=((qi)/session.length*100)+'%';const box=document.getElementById('options');box.innerHTML='';q.options.forEach((o,i)=>{const b=document.createElement('button');b.className='option';b.innerHTML=`${String.fromCharCode(65+i)}) ${o}`;b.onclick=()=>answer(i,b);box.appendChild(b)});document.getElementById('explain').classList.add('hidden');document.getElementById('next').classList.add('hidden')}
+function answer(i){if(answered)return;answered=true;const q=session[qi],ok=i===q.answer,st=loadStats();st.attempts++;if(ok){st.correct++;score++}document.querySelectorAll('#options .option').forEach((b,j)=>{b.disabled=true;if(j===q.answer)b.classList.add('correct');else if(j===i&&!ok)b.classList.add('wrong')});if(!ok){if(!st.errors.some(e=>e.text===q.text))st.errors.push(q)}else st.errors=st.errors.filter(e=>e.text!==q.text);saveStats(st);const ex=document.getElementById('explain');ex.innerHTML=(ok?'<b>✅ Acertou!</b><br>':'<b>🔎 Correção:</b><br>')+q.explain;ex.classList.remove('hidden');document.getElementById('next').textContent=qi===session.length-1?'Ver resultado':'Próxima';document.getElementById('next').classList.remove('hidden');document.getElementById('bar').style.width=((qi+1)/session.length*100)+'%'}
+function nextQ(){qi++;if(qi<session.length){showQ();return}document.getElementById('quiz').classList.add('hidden');document.getElementById('result').classList.remove('hidden');const p=Math.round(score/session.length*100);let m=p>=80?'Muito bom. Pode avançar.':p>=60?'Revise os erros e faça outro bloco.':'Volte à Revisão antes de tentar novamente.';document.getElementById('resultText').innerHTML=`Você acertou <b>${score} de ${session.length}</b> (${p}%).<br>${m}`}
+function backSetup(){document.getElementById('result').classList.add('hidden');document.getElementById('quiz').classList.add('hidden');document.getElementById('setup').classList.remove('hidden')}
+function resetStats(){if(confirm('Apagar todo o progresso?')){localStorage.removeItem(SKEY);renderStats()}}
+if('serviceWorker'in navigator&&window.isSecureContext)navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'}).catch(error=>console.error('Falha ao registrar o modo offline:',error));
+</script>
+</body></html>
